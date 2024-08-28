@@ -18,7 +18,7 @@ const useSearchQuery = (query: RuleGroupType): string => {
 
         return `${rule.field}=${rule.operator}.${value}`;
       })
-      .join(",");
+      .join("&");
 
     setSearchQuery(searchQuery);
   }, [query]);
