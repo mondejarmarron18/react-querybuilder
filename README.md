@@ -1,5 +1,15 @@
 # React Query Builder with PostgREST
 
+**Tech Used:**
+
+- NextJS
+- PostgreSQL
+- PostgREST
+- React Query Builder
+- Docker
+- SASS/TaiwindCSS
+- `make` utility
+
 ## Getting Started
 
 First, to run the development server, you need to install docker and docker compose. Then run it with the following command:
@@ -16,8 +26,9 @@ make dev
 You can create a database using a pgadmin UI. To access it you need to open [http://localhost:4000](http://localhost:4000).
 
 Use this login credentials:
-_Email:_ `rqb@gmail.com`
-_Password:_ `rqb_password`
+
+- **Email:** `rqb@gmail.com`
+- **Password:** `rqb_password`
 
 Create a database named `user`
 
@@ -40,9 +51,7 @@ Open [http://localhost:3000](http://localhost:3000) to access the result.
 
 ## API
 
-Open [http://localhost:5000](http://localhost:5000) followed by table name `/user`
-
-<br/>
+To access the API, open [http://localhost:5000](http://localhost:5000) followed by table name `/user`
 
 Endpoint for user table
 [http://localhost:5000/user](http://localhost:5000/user)
