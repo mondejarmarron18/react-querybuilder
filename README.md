@@ -2,16 +2,13 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, to run the development server, you need to install docker and docker compose. Then run it with the following command:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+#docker compose
+docker compose -p rqb-dev -f docker/development/docker-compose.yml up --build
+#or using make utility
+make dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
