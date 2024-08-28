@@ -1,0 +1,47 @@
+services:
+  app:
+    container_name: rqb-app
+    build:
+      context: ../..
+      dockerfile: docker/development/Dockerfile
+    image: mondejarmarron18/rqb-app:dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../../:/app
+      - /app/node_modules
+    depends_on:
+      - api
+  db:
+    container_name: rqb-db
+    image: postgres:16.4-alpine3.20
+    environment:
+      - POSTGRES_PASSWORD=rqb_password
+      - POSTGRES_USER=rqb_user
+      - POSTGRES_DB=rqb_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+  api:
+    container_name: rqb-api
+    image: postgrest/postgrest:v12.2.3
+    ports:
+      - "5000:3000"
+    environment:
+      - PGRST_DB_URI=postgres://rqb_user:rqb_password@db:5432/rqb_db
+      - PGRST_DB_SCHEMA=public
+      - PGRST_DB_ANON_ROLE=rqb_user
+      - PGRST_OPENAPI_SERVER_PROXY_URI=http://app:3000
+    depends_on:
+      - db
+  dbms:
+    container_name: rqb-dbms
+    image: dpage/pgadmin4:8.11.0
+    ports:
+      - "4000:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=rqb@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=rqb_password
+    depends_on:
+      - db
