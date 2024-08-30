@@ -15,10 +15,8 @@ services:
   db:
     container_name: rqb-db
     image: postgres:16.4-alpine3.20
-    environment:
-      - POSTGRES_PASSWORD=rqb_password
-      - POSTGRES_USER=rqb_user
-      - POSTGRES_DB=rqb_db
+    env_file:
+      - ../../.env
     ports:
       - "5432:5432"
     volumes:
@@ -28,11 +26,8 @@ services:
     image: postgrest/postgrest:v12.2.3
     ports:
       - "5000:3000"
-    environment:
-      - PGRST_DB_URI=postgres://rqb_user:rqb_password@db:5432/rqb_db
-      - PGRST_DB_SCHEMA=public
-      - PGRST_DB_ANON_ROLE=rqb_user
-      - PGRST_OPENAPI_SERVER_PROXY_URI=http://app:3000
+    env_file:
+      - ../../.env
     depends_on:
       - db
   dbms:
@@ -40,8 +35,7 @@ services:
     image: dpage/pgadmin4:8.11.0
     ports:
       - "4000:80"
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=rqb@gmail.com
-      - PGADMIN_DEFAULT_PASSWORD=rqb_password
+    env_file:
+      - ../../.env
     depends_on:
       - db

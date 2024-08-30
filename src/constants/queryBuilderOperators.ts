@@ -1,19 +1,19 @@
-import { FullOperator } from "react-querybuilder";
-
-type QueryBuilderOperator = {
+export type QueryBuilderOperator = {
   name: string;
   label: string;
-  inputType?: string;
 };
 
-const queryBuilderOperators: QueryBuilderOperator[] = [
-  { name: "eq", label: "= (equals)" },
-  { name: "gt", label: "> (greater than)" },
-  { name: "gte", label: ">= (greater than or equal to)" },
-  { name: "lt", label: "< (less than)" },
-  { name: "lte", label: "<= (less than or equal to)" },
-  { name: "neq", label: "!= (not equals)" },
+// Operators based on postgREST documentation
+// Reference: https://docs.postgrest.org/en/v12/references/api/tables_views.html#operators
+const queryBuilderOperators = [
+  { name: "eq", label: "is equal to" },
+  { name: "gt", label: "greater than" },
+  { name: "gte", label: "higher than or equal" },
+  { name: "lt", label: "higher than" },
+  { name: "lte", label: "lower than or equal" },
+  { name: "neq", label: "is not" },
+  { name: "like", label: "contains (case sensitive)" },
   { name: "ilike", label: "contains" },
-];
+] as const;
 
 export default queryBuilderOperators;

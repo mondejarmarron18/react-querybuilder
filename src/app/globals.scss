@@ -8,7 +8,54 @@ body {
 }
 
 .queryBuilder {
-  button {
-   
+
+
+  .ruleGroup {
+    @apply bg-transparent flex-col-reverse border-none p-0;
+
+    &-header {
+      .ruleGroup-addGroup {
+        @apply hidden;
+      }
+      .ruleGroup-addRule {
+        &::before {
+          content: ""
+        }
+      }
+    }
+
+    &-body {
+      @apply flex-row;
+
+      .rule {
+        @apply gap-4 flex-wrap;
+
+        select, input {
+          @apply p-2 bg-slate-100 rounded;
+        }
+
+        input[type="text"] {
+          @apply bg-transparent border rounded;
+        }
+
+        .rule-remove {
+          @apply p-2 hover:bg-gray-100 text-gray-700 rounded-lg;
+        }
+      }
+
+      .betweenRules {
+        @apply hidden;
+
+        .ruleGroup-combinators {
+          @apply p-2 bg-slate-100 rounded;
+        }
+      }
+
+      
+
+      .rule-remove {
+        // @apply bg-red-500;
+      }
+    }
   }
 }
